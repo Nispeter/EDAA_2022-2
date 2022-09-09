@@ -5,14 +5,14 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-	BinaryTree BT(10);
-	BT.createNode(5);
-	BT.createNode(2);
-	BT.createNode(21);
-	BT.createNode(11);
-	BT.createNode(13);
+	BinaryTree b;
+	b.createNode(5);
+	b.createNode(2);
+	b.createNode(21);
+	b.createNode(11);
+	b.createNode(13);
 
-	BT.printTree();
+	b.printTree();
 	return 0;
 }
 

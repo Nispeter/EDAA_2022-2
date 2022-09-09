@@ -15,7 +15,7 @@ class BinaryTree {
 	public:
 		Node* root = NULL;
 
-		BinaryTree(int r): root(new Node (r)){}
+		BinaryTree():root(new Node(0)){}
 
 		void inOrder(Node* n){
 			if(n!= NULL){
@@ -24,7 +24,6 @@ class BinaryTree {
 				inOrder(n->r);
 			}
 		}
-
 		void createNode(int k){
 			Node *t = root;
 			while(t != NULL){
@@ -44,7 +43,26 @@ class BinaryTree {
 				break;
 			}
 		}
-
+		bool searchNode(int k){
+			Node *t = root;
+			while(t!=NULL){
+				if(t->key == k)
+					return true;
+				if(t->key > k){
+					if(t->l != NULL){
+						t = t->l;
+						continue;
+					}
+					return false;
+				}
+				if(t->r != NULL){
+					t = t->r;
+					continue;
+				}
+				return false;
+			}
+			return false;
+		}
 		void printTree(){
 			inOrder(root);
 		}
@@ -58,6 +76,7 @@ OBSEVACIONES:
 todas sus funciones a los otros arboles (por pauta)
 2->- tiene funcionalidad de set por lo que no existiran
 valores con la misma clave (por pauta)
+3.- el nodo root se inicializa en 0 y no tengo tiempo para cambiarlo (estoy en la u)
 */
 
 
