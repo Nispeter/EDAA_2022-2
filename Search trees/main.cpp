@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
 	b.createNode(9);
 	b.createNode(-2);
 	//b.printTree(b.root);
-	b.root = b.leftRotation(b.root);
+	//b.root = b.leftRotation(b.root);
 	//b.root = b.rightRotation(b.root);
 	//b.printTree(b.root);
 	b.printBT(b.root);

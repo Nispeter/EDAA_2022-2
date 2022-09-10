@@ -12,6 +12,7 @@ class Node{
 
 class BinaryTree {
 	private: 
+		int size = 0;
 	public:
 		Node* root = NULL;
 
@@ -25,8 +26,14 @@ class BinaryTree {
 			}
 		}
 		void createNode(int k){
+			if (size == 0){
+				size++;
+				root->key = k;
+				return;
+			}
 			Node *t = root;
 			while(t != NULL){
+				if(t->key == k)return;
 				if(t->key > k){
 					if(t->l != NULL){
 						t = t->l;
@@ -42,6 +49,7 @@ class BinaryTree {
 				t->r = new Node(k);
 				break;
 			}
+			size++;
 		}
 		bool searchNode(int k){
 			Node *t = root;
