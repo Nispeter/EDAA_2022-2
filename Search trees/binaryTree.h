@@ -16,8 +16,6 @@ class BinaryTree {
 	public:
 		Node* root = NULL;
 
-		BinaryTree():root(new Node(0)){}
-
 		void inOrder(Node* n){
 			if(n!= NULL){
 				inOrder(n->l);
@@ -28,7 +26,7 @@ class BinaryTree {
 		void createNode(int k){
 			if (size == 0){
 				size++;
-				root->key = k;
+				root = new Node(k);
 				return;
 			}
 			Node *t = root;
@@ -71,6 +69,7 @@ class BinaryTree {
 			}
 			return false;
 		}
+		/**
 		static Node* leftRotation(Node* t){
 			if(t->r != NULL){
 				Node* auxNode = t->r;
@@ -89,6 +88,7 @@ class BinaryTree {
 			}
 			return t;
 		}
+		**/
 		//Impresion de arbol rescatada de: https://stackoverflow.com/questions/36802354/print-binary-tree-in-a-pretty-way-using-c
 		void printBT(const string& prefix, const Node* node, bool isLeft)
 		{
