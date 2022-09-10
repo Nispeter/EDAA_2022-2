@@ -23,29 +23,29 @@ class BinaryTree {
 				inOrder(n->r);
 			}
 		}
-		Node *createNode(int k){
+		void createNode(int k){
 			if (size == 0){
 				size++;
 				root = new Node(k);
-				return root;
+				return;
 			}
 			Node *t = root;
 			while(t != NULL){
-				if(t->key == k)return NULL;
+				if(t->key == k)return;
 				if(t->key > k){
 					if(t->l != NULL){
 						t = t->l;
 						continue;
 					}
 					t->l = new Node(k);
-					return t->l;
+					break;
 				}
 				if(t->r != NULL){
 					t = t->r;
 					continue;
 				}
 				t->r = new Node(k);
-				return t->r;
+				break;
 			}
 			size++;
 		}
