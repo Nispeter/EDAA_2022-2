@@ -63,10 +63,42 @@ class BinaryTree {
 			}
 			return false;
 		}
-		void printTree(){
-			inOrder(root);
+		static Node* leftRotation(Node* t){
+			if(t->r != NULL){
+				Node* auxNode = t->r;
+				t->r = auxNode->l;
+				auxNode->l = t;
+				return auxNode;
+			}
+			return t;
 		}
+		static Node* rightRotation(Node* t){
+			if(t->l != NULL){
+				Node* auxNode = t->l;
+				t->l = auxNode->r;
+				auxNode->r = t;
+				return auxNode;
+			}
+			return t;
+		}
+		//Impresion de arbol rescatada de: https://stackoverflow.com/questions/36802354/print-binary-tree-in-a-pretty-way-using-c
+		void printBT(const string& prefix, const Node* node, bool isLeft)
+		{
+		    if( node != nullptr )
+		    {
+		        cout << prefix;
+		        cout << (isLeft ? "├──" : "└──" );
+		        cout << node->key << std::endl;
 
+		        printBT( prefix + (isLeft ? "│   " : "    "), node->r, true);
+        		printBT( prefix + (isLeft ? "│   " : "    "), node->l, false);
+		    }
+		}
+		void printBT(const Node* node)
+		{
+			printBT("", node, false);    
+		}
+ 
 };
 
 

@@ -4,8 +4,8 @@ using namespace std;
 
 class SplayTree: public BinaryTree {
 	private:
-		Node* balance(Node* next, int key){
-			if(next->key == key or next == NULL)
+		Node* balance(Node* next, int k){
+			if(next->key == k or next == NULL)
 				return next;
 			if(k < next->key){
 
@@ -24,6 +24,6 @@ class SplayTree: public BinaryTree {
 		} 	
 		bool search(int k){
 			Node *t = root;
-			return (balance(t, k) == NULL) false : true;
+			return (balance(t, k) == NULL)? false : true;
 		}	
 };
