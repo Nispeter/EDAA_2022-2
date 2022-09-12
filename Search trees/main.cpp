@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>			//no me funen estoy en el lab y tengo tiempo limitado 
-#include "splayTree.h"
+//#include "splayTree.h"
+#include "AVLTree.h"
 
 using namespace std;
 
@@ -21,6 +22,23 @@ int main(int argc, char const *argv[])
 	//b.root = b.rightRotation(b.root);
 	//b.printTree(b.root);
 	b.printBT(b.root);
+
+
+	AVLTree a;
+
+	cout << "0" << endl;
+
+	a.insert(1);
+
+	cout << "1" << endl;
+	a.insert(2);
+
+	cout << "2" << endl;
+	a.insert(3);
+
+	cout << "3" << endl;
+	a.printBT(a.root);
+	cout << "print" << endl;
 	return 0;
 }
 

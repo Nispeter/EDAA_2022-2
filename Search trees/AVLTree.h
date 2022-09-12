@@ -4,8 +4,6 @@ using namespace std;
 
 class AVLNode: public Node {
 	public:
-		AVLNode* l = NULL;
-		AVLNode* r = NULL; 
 		int altura = 0; 
 		int factor = 0;
 };
@@ -13,13 +11,14 @@ class AVLNode: public Node {
 class AVLTree: public BinaryTree {
 	private:
 		int mysize = 0;
-		void calcularAltura(AVLNode* recorrido);
-		void calcularFactor(AVLNode* recorrido);
-		void balancear(AVLNode* recorrido, AVLNode* padre);
-		void leftRotation(AVLNode* recorrido, AVLNode* padre);
-		void rightRotation(AVLNode* recorrido, AVLNode* padre);
-		void insertRecursivo(int elementoInsertado, AVLNode* recorrido, AVLNode* padre);
+		void calcularAltura(Node* recorrido);
+		void calcularFactor(Node* recorrido);
+		void balancear(Node* recorrido, Node* padre);
+		void leftRotation(Node* recorrido, Node* padre);
+		void rightRotation(Node* recorrido, Node* padre);
+		void insertRecursivo(int elementoInsertado, Node* recorrido, Node* padre);
 		bool empty();
 	public:
+		Node* head = NULL;
 		void insert(int elementoInsertado);
 };
