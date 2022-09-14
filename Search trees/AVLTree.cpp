@@ -2,11 +2,13 @@
 
 using namespace std;
 
+AVLTree::AVLTree() {}
 
 // El padre pasará a ser el hijo izquierdo del recorrido.
-void AVLTree::leftRotation(AVLNode* recorrido, AVLNode* padre) {
+void AVLTree::AVLLeftRotation(Node* recorrido, Node* padre) {
 
-    AVLNode* aux = recorrido->r;
+    //AVLNode* aux = recorrido->r;
+    Node* aux = recorrido->r;
 
     // Si el recorrido es head, el hijo derecho será el head.
     if (padre == NULL) {
@@ -31,9 +33,10 @@ void AVLTree::leftRotation(AVLNode* recorrido, AVLNode* padre) {
 }
 
 // El padre pasará a ser el hijo derecho del recorrido.
-void AVLTree::rightRotation(AVLNode* recorrido, AVLNode* padre) {
+void AVLTree::AVLRightRotation(Node* recorrido, Node* padre) {
 
-    AVLNode* aux = recorrido->l;
+    //AVLNode* aux = recorrido->l;
+    Node* aux = recorrido->l;
     
     // Si el recorrido es head, el hijo izquierdo será el head.
     if (padre == NULL) {
@@ -58,38 +61,38 @@ void AVLTree::rightRotation(AVLNode* recorrido, AVLNode* padre) {
 }
 
 // Balancea un sub-árbol si no cumple la invariante AVL.
-void AVLTree::balancear(AVLNode* recorrido, AVLNode* padre) {
+void AVLTree::balancear(Node* recorrido, Node* padre) {
 
     // No podemos balancear un nodo inexistente.
     if (!recorrido) return;
 
-    if (recorrido->factor <= -2) {
+    if (((AVLNode*)recorrido)->factor <= -2) {
         // El factor es menor que -1 por lo tanto es Left Heavy y no cumple la invariante.
 
-        if (recorrido->l->factor == -1) {
+        if (((AVLNode*)recorrido->l)->factor == -1) {
 
             // LeftLeft
-            rightRotation(recorrido, padre);
-        } else if (recorrido->l->factor == 1) {
+            AVLRightRotation(recorrido, padre);
+        } else if (((AVLNode*)recorrido->l)->factor == 1) {
 
             // LeftRight
             // Entiéndase acá que el "padre" es el recorrido, en la primera rotación.
-            leftRotation(recorrido->l, recorrido);
-            rightRotation(recorrido, padre);
+            AVLLeftRotation(recorrido->l, recorrido);
+            AVLRightRotation(recorrido, padre);
         }
-    } else if (recorrido->factor >= 2) {
+    } else if (((AVLNode*)recorrido)->factor >= 2) {
         // El factor es mayor que +1 por lo tanto es Right Heavy y no cumple la invariante.
 
-        if (recorrido->r->factor == 1) {
+        if (((AVLNode*)recorrido->r)->factor == 1) {
 
             // RightRight
-            leftRotation(recorrido, padre);
-        } else if (recorrido->r->factor == -1){
+            AVLLeftRotation(recorrido, padre);
+        } else if (((AVLNode*)recorrido->r)->factor == -1){
 
             // RightLeft
             // Entiéndase acá que el "padre" es el recorrido, en la primera rotación.
-            rightRotation(recorrido->r, recorrido);
-            leftRotation(recorrido, padre);
+            AVLRightRotation(recorrido->r, recorrido);
+            AVLLeftRotation(recorrido, padre);
         }
     }
 
@@ -101,8 +104,8 @@ void AVLTree::balancear(AVLNode* recorrido, AVLNode* padre) {
 //
 // En el caso de una hoja su altura es igual a max(-1, -1) + 1, lo que resulta en 0 y es correcto.
 
-void AVLTree::calcularAltura(AVLNode *recorrido) {
-    recorrido->altura = max((recorrido->l ? recorrido->l->altura : -1),(recorrido->r ? recorrido->r->altura : -1)) + 1;
+void AVLTree::calcularAltura(Node *recorrido) {
+    ((AVLNode*)recorrido)->altura = max((recorrido->l ? ((AVLNode*)recorrido->l)->altura : -1),(recorrido->r ? ((AVLNode*)recorrido->r)->altura : -1)) + 1;
 }
 
 // Calcula el factor de balance del nodo, que definimos como Altura(Derecho) - Altura(Izquierdo).
@@ -115,21 +118,26 @@ void AVLTree::calcularAltura(AVLNode *recorrido) {
 //
 //  Utilizamos el operador ternario en el caso de que exista un hijo nulo.
 
-void AVLTree::calcularFactor(AVLNode *recorrido) {
-    recorrido->factor = (recorrido->r ? recorrido->r->altura : -1) - (recorrido->l ? recorrido->l->altura : -1);
+void AVLTree::calcularFactor(Node *recorrido) {
+    ((AVLNode*)recorrido)->factor = (recorrido->r ? ((AVLNode*)recorrido->r)->altura : -1) - (recorrido->l ? ((AVLNode*)recorrido->l)->altura : -1);
 }
 
-void AVLTree::insertRecursivo(int elementoInsertado, AVLNode* recorrido, AVLNode* padre){
+void AVLTree::insertRecursivo(int elementoInsertado, Node* recorrido, Node* padre){
 
     // Si encontramos una clave igual no insertamos y retornamos.
     if(recorrido->key == elementoInsertado) return;
 
     // Si la clave es menor que la actual, revisar el hijo izquierdo.
     if (elementoInsertado < recorrido->key) {
-
         // Si no existe hijo izquierdo, insertamos.
         if (recorrido->l == NULL) {
-            AVLNode* nuevo = new AVLNode();
+            AVLNode* nuevo = new AVLNode(0);
+
+            nuevo->l = NULL;
+            nuevo->r = NULL;
+            nuevo->altura = 0;
+            nuevo->factor = 0;
+
             nuevo->key = elementoInsertado;
             recorrido->l = nuevo;
             mysize++;
@@ -148,7 +156,13 @@ void AVLTree::insertRecursivo(int elementoInsertado, AVLNode* recorrido, AVLNode
 
         // Si no existe hijo derecho, insertamos.
         if (recorrido->r == NULL) {
-        	AVLNode* nuevo = new AVLNode();
+        	AVLNode* nuevo = new AVLNode(0);
+
+            nuevo->l = NULL;
+            nuevo->r = NULL;
+            nuevo->altura = 0;
+            nuevo->factor = 0;
+
             nuevo->key = elementoInsertado;
             recorrido->r = nuevo;
             mysize++;
@@ -169,9 +183,15 @@ void AVLTree::insert(int elementoInsertado){
 
     // Si es el primer par a insertar.
     if (empty()) {
-    	AVLNode* nuevo = new AVLNode();
-        nuevo->key = elementoInsertado;
-    	root = nuevo;
+        AVLNode* start = new AVLNode(0);
+
+        start->l = NULL;
+        start->r = NULL;
+        start->altura = 0;
+        start->factor = 0;
+
+        start->key = elementoInsertado;
+    	root = start;
     	mysize++;
         return;
     } else {
@@ -181,4 +201,8 @@ void AVLTree::insert(int elementoInsertado){
 
 bool AVLTree::empty(){
     return (mysize == 0);
+}
+
+AVLNode::AVLNode(int k) : Node(k) {
+
 }
