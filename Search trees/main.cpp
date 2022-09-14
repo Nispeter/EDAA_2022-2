@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>			//no me funen estoy en el lab y tengo tiempo limitado 
+#include <bits/stdc++.h>			//no me funen estoy en el lab y tengo tiempo limitado
 //#include "splayTree.h"
 #include "AVLTree.h"
 
@@ -6,39 +6,27 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-	BinaryTree b;
-	b.createNode(-1);
-	b.createNode(-3);
-	b.createNode(-7);
-	b.createNode(3);
-	b.createNode(6);
-	b.createNode(2);
-	b.createNode(8);
-	b.createNode(11);
-	b.createNode(9);
-	b.createNode(-2);
-	//b.printTree(b.root);
-	//b.root = b.leftRotation(b.root);
-	//b.root = b.rightRotation(b.root);
-	//b.printTree(b.root);
+	AVLTree b;
+	b.insert(1);
+	b.insert(33);
+	b.insert(7);
+	b.insert(3);
+	b.insert(6);
+	b.insert(2);
+	b.insert(8);
+	b.insert(11);
+	b.insert(92);
+	b.insert(27);
+    b.insert(9);
+    b.insert(3);
+    b.insert(80);
+    b.insert(98);
+    b.insert(62);
+    b.insert(21);
+    b.insert(82);
+    b.insert(111);
 	b.printBT(b.root);
-
-
-	AVLTree a;
-
-	cout << "0" << endl;
-
-	a.insert(1);
-
-	cout << "1" << endl;
-	a.insert(2);
-
-	cout << "2" << endl;
-	a.insert(3);
-
-	cout << "3" << endl;
-	a.printBT(a.root);
-	cout << "print" << endl;
+    
 	return 0;
 }
 

@@ -2,6 +2,9 @@
 
 using namespace std;
 
+AVLTree::AVLTree() {
+    //head = NULL;
+}
 
 // El padre pasará a ser el hijo izquierdo del recorrido.
 void AVLTree::leftRotation(Node* recorrido, Node* padre) {
@@ -11,7 +14,7 @@ void AVLTree::leftRotation(Node* recorrido, Node* padre) {
 
     // Si el recorrido es head, el hijo derecho será el head.
     if (padre == NULL) {
-        head = aux;
+        root = aux;
     } else if (padre->l == recorrido) {
     	// Si el nodo recorrido es el hijo izquierdo del padre, el hijo derecho del recorrido lo remplazara.
         padre->l = aux;
@@ -39,7 +42,7 @@ void AVLTree::rightRotation(Node* recorrido, Node* padre) {
     
     // Si el recorrido es head, el hijo izquierdo será el head.
     if (padre == NULL) {
-        head = aux;
+        root = aux;
     } else if (padre->l == recorrido) {
     	// Si el nodo recorrido es el hijo izquierdo del padre, el hijo izquierdo del recorrido lo remplazara.
         padre->l = aux;
@@ -130,7 +133,13 @@ void AVLTree::insertRecursivo(int elementoInsertado, Node* recorrido, Node* padr
     if (elementoInsertado < recorrido->key) {
         // Si no existe hijo izquierdo, insertamos.
         if (recorrido->l == NULL) {
-            AVLNode* nuevo;
+            AVLNode* nuevo = new AVLNode(0);
+
+            nuevo->l = NULL;
+            nuevo->r = NULL;
+            nuevo->altura = 0;
+            nuevo->factor = 0;
+
             nuevo->key = elementoInsertado;
             recorrido->l = nuevo;
             mysize++;
@@ -147,12 +156,15 @@ void AVLTree::insertRecursivo(int elementoInsertado, Node* recorrido, Node* padr
     } else {
         // Si la clave es mayor que la actual, revisar el hijo derecho.
 
-        cout << "BAH" << endl;
-
         // Si no existe hijo derecho, insertamos.
         if (recorrido->r == NULL) {
-            cout << "BAH2" << endl;
-        	AVLNode* nuevo;
+        	AVLNode* nuevo = new AVLNode(0);
+
+            nuevo->l = NULL;
+            nuevo->r = NULL;
+            nuevo->altura = 0;
+            nuevo->factor = 0;
+
             nuevo->key = elementoInsertado;
             recorrido->r = nuevo;
             mysize++;
@@ -173,16 +185,26 @@ void AVLTree::insert(int elementoInsertado){
 
     // Si es el primer par a insertar.
     if (empty()) {
-    	AVLNode* nuevo;
-        nuevo->key = elementoInsertado;
-    	head = nuevo;
+        AVLNode* start = new AVLNode(0);
+
+        start->l = NULL;
+        start->r = NULL;
+        start->altura = 0;
+        start->factor = 0;
+
+        start->key = elementoInsertado;
+    	root = start;
     	mysize++;
         return;
     } else {
-        insertRecursivo(elementoInsertado, head, NULL);
+        insertRecursivo(elementoInsertado, root, NULL);
     }
 }
 
 bool AVLTree::empty(){
     return (mysize == 0);
+}
+
+AVLNode::AVLNode(int k) : Node(k) {
+
 }
