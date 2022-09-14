@@ -70,6 +70,10 @@ class BinaryTree {
 			return false;
 		}
 
+		bool search(int k) {
+			return searchNode(k);
+		} 
+
 		static Node* leftRotation(Node* t){
 			if(t->r != NULL){
 				Node* auxNode = t->r;

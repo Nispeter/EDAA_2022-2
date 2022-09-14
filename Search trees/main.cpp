@@ -26,6 +26,7 @@ int main(int argc, char const *argv[])
     b.insert(82);
     b.insert(111);
 	b.printBT(b.root);
+	cout << b.search(80000) << endl;
 
 	return 0;
 }
