@@ -27,7 +27,7 @@ class SplayTree: public BinaryTree {
 					y en que modo: puede ser zig-zag o zig-zig.
 					Se se llama a estas funciones para hacer rotaciones entre esos ultimos 2 nodos
 					y luego se reasigna a t para hacer la utlima rotacion de las 3, esto conforma ambos modos
-					zig-zig:						zig-zag:
+                        zig-zig:						zig-zag:
                                t           t                t               t
                               /             \              /                 \
                              l      ->       r            l        ->         r
