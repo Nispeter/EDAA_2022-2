@@ -6,7 +6,7 @@ class Node{
 	public: 
 		int key;
 		Node* l = NULL;
-		Node* r = NULL; 
+		Node* r = NULL;
 		Node(int k):key(k){}
 };
 
@@ -14,6 +14,7 @@ class BinaryTree {
 	private: 
 		int size = 0;
 	public:
+		
 		Node* root = NULL;
 
 		void inOrder(Node* n){
@@ -69,7 +70,6 @@ class BinaryTree {
 			}
 			return false;
 		}
-
 		static Node* leftRotation(Node* t){
 			if(t->r != NULL){
 				Node* auxNode = t->r;
@@ -88,7 +88,6 @@ class BinaryTree {
 			}
 			return t;
 		}
-
 		//Impresion de arbol rescatada de: https://stackoverflow.com/questions/36802354/print-binary-tree-in-a-pretty-way-using-c
 		void printBT(const string& prefix, const Node* node, bool isLeft)
 		{
