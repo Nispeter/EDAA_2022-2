@@ -2,12 +2,10 @@
 
 using namespace std;
 
-AVLTree::AVLTree() {
-    //head = NULL;
-}
+AVLTree::AVLTree() {}
 
 // El padre pasará a ser el hijo izquierdo del recorrido.
-void AVLTree::leftRotation(Node* recorrido, Node* padre) {
+void AVLTree::AVLLeftRotation(Node* recorrido, Node* padre) {
 
     //AVLNode* aux = recorrido->r;
     Node* aux = recorrido->r;
@@ -35,7 +33,7 @@ void AVLTree::leftRotation(Node* recorrido, Node* padre) {
 }
 
 // El padre pasará a ser el hijo derecho del recorrido.
-void AVLTree::rightRotation(Node* recorrido, Node* padre) {
+void AVLTree::AVLRightRotation(Node* recorrido, Node* padre) {
 
     //AVLNode* aux = recorrido->l;
     Node* aux = recorrido->l;
@@ -74,13 +72,13 @@ void AVLTree::balancear(Node* recorrido, Node* padre) {
         if (((AVLNode*)recorrido->l)->factor == -1) {
 
             // LeftLeft
-            rightRotation(recorrido, padre);
+            AVLRightRotation(recorrido, padre);
         } else if (((AVLNode*)recorrido->l)->factor == 1) {
 
             // LeftRight
             // Entiéndase acá que el "padre" es el recorrido, en la primera rotación.
-            leftRotation(recorrido->l, recorrido);
-            rightRotation(recorrido, padre);
+            AVLLeftRotation(recorrido->l, recorrido);
+            AVLRightRotation(recorrido, padre);
         }
     } else if (((AVLNode*)recorrido)->factor >= 2) {
         // El factor es mayor que +1 por lo tanto es Right Heavy y no cumple la invariante.
@@ -88,13 +86,13 @@ void AVLTree::balancear(Node* recorrido, Node* padre) {
         if (((AVLNode*)recorrido->r)->factor == 1) {
 
             // RightRight
-            leftRotation(recorrido, padre);
+            AVLLeftRotation(recorrido, padre);
         } else if (((AVLNode*)recorrido->r)->factor == -1){
 
             // RightLeft
             // Entiéndase acá que el "padre" es el recorrido, en la primera rotación.
-            rightRotation(recorrido->r, recorrido);
-            leftRotation(recorrido, padre);
+            AVLRightRotation(recorrido->r, recorrido);
+            AVLLeftRotation(recorrido, padre);
         }
     }
 

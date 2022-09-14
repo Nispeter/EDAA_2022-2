@@ -15,8 +15,8 @@ class AVLTree: public BinaryTree {
 		void calcularAltura(Node* recorrido);
 		void calcularFactor(Node* recorrido);
 		void balancear(Node* recorrido, Node* padre);
-		void leftRotation(Node* recorrido, Node* padre);
-		void rightRotation(Node* recorrido, Node* padre);
+		void AVLLeftRotation(Node* recorrido, Node* padre);
+		void AVLRightRotation(Node* recorrido, Node* padre);
 		void insertRecursivo(int elementoInsertado, Node* recorrido, Node* padre);
 		bool empty();
 	public:

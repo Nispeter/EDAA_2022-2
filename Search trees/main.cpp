@@ -26,7 +26,7 @@ int main(int argc, char const *argv[])
     b.insert(82);
     b.insert(111);
 	b.printBT(b.root);
-    
+
 	return 0;
 }
 
