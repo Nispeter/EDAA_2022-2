@@ -7,13 +7,13 @@ class SplayTree: public BinaryTree {
 		/*Metodo principal del splayTree es el que regula las rotaciones
 		segun frecuencia, recive como parametros un arbol binario t y un valor a buscar k
 		luego este valor es reajustado hasta la raiz */
-		/*OBSEVACION: cada vez que se haga referencia a nodo 1, 2 o 3 esto significa al nivel en 
+		/*OBSERVACION: cada vez que se haga referencia a nodo 1, 2 o 3 esto significa al nivel en 
 		que se encuentran, siendo el 1 mas acercado a la raiz:
-				t-----------nivel (1)
-			  /   \	
-			l      r--------nivel (2)
-		  /   \	 /   \
-	     l     r l    r-----nivel (3)
+                t-----------nivel (1)
+              /   \	
+            l      r--------nivel (2)
+          /   \  /   \
+         l     r l    r-----nivel (3)
 		*/
 		Node balance(Node* t,const int k){
 			if(t != NULL and t->key != k){		
@@ -28,11 +28,11 @@ class SplayTree: public BinaryTree {
 					Se se llama a estas funciones para hacer rotaciones entre esos ultimos 2 nodos
 					y luego se reasigna a t para hacer la utlima rotacion de las 3, esto conforma ambos modos
 					zig-zig:						zig-zag:
-							   t           t 				t               t
-							  /   			\			   /				 \
-							 l   	->		 r            l 	   ->         r
-							/				  \            \				 /
-						   l   				   r            r               l
+                               t           t                t               t
+                              /             \              /                 \
+                             l      ->       r            l        ->         r
+                            /                 \            \                 /
+                           l                   r            r               l
 					*/
 					//casos: t->L->R, t->L->L
 					if(k > t->l->key){		
