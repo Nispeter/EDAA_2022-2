@@ -1,5 +1,10 @@
 #include "AVLTree.h"
 
+/**
+El siguiente código esta basado una implementación de AVL hecha por Iván Montti y Rodrigo San Martín para la asignatura de
+Estructura de Datos 2021. Se ha modificado para que pueda heredar del BinaryTree. 
+ **/
+
 using namespace std;
 
 AVLTree::AVLTree() {}
@@ -10,7 +15,7 @@ void AVLTree::AVLLeftRotation(Node* recorrido, Node* padre) {
     //AVLNode* aux = recorrido->r;
     Node* aux = recorrido->r;
 
-    // Si el recorrido es head, el hijo derecho será el head.
+    // Si el recorrido es root, el hijo derecho será el root.
     if (padre == NULL) {
         root = aux;
     } else if (padre->l == recorrido) {
@@ -38,7 +43,7 @@ void AVLTree::AVLRightRotation(Node* recorrido, Node* padre) {
     //AVLNode* aux = recorrido->l;
     Node* aux = recorrido->l;
     
-    // Si el recorrido es head, el hijo izquierdo será el head.
+    // Si el recorrido es root, el hijo izquierdo será el root.
     if (padre == NULL) {
         root = aux;
     } else if (padre->l == recorrido) {
@@ -147,7 +152,7 @@ void AVLTree::insertRecursivo(int elementoInsertado, Node* recorrido, Node* padr
         // Si el existe el hijo izquierdo, continuamos.
         insertRecursivo(elementoInsertado, recorrido->l, recorrido);
 
-        // Recalculamos la altura, factor y balanceamos si es necesario.
+        // Re-calculamos la altura, factor y balanceamos si es necesario.
         calcularAltura(recorrido);
         calcularFactor(recorrido);
         balancear(recorrido, padre);
@@ -172,7 +177,7 @@ void AVLTree::insertRecursivo(int elementoInsertado, Node* recorrido, Node* padr
         // Si el existe el hijo derecho, continuamos.
         insertRecursivo(elementoInsertado, recorrido->r, recorrido);
 
-        // Recalculamos la altura, factor y balanceamos si es necesario.
+        // Re-calculamos la altura, factor y balanceamos si es necesario.
         calcularAltura(recorrido);
         calcularFactor(recorrido);
         balancear(recorrido, padre);
