@@ -15,7 +15,7 @@ class SplayTree: public BinaryTree {
           /   \  /   \
          l     r l    r-----nivel (3)
 		*/
-		Node balance(Node* t,const int k){
+		Node* balance(Node* t,const int k){
 			if(t != NULL and t->key != k){		
 				//si la key se encuentra en el hijo izquierdo del nodo t
 				if(k < t->key){

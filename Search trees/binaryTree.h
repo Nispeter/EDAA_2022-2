@@ -1,5 +1,5 @@
-#ifndef BT
-#define BT
+#ifndef RATIO_H
+#define RATIO_H
 
 #include <iostream>
 
@@ -115,9 +115,7 @@ class BinaryTree {
 		}
  
 };
-
 #endif
-
 /*
 OBSEVACIONES: 
 1->- recordar que este arbol binario debe heredar 

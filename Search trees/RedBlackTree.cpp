@@ -10,7 +10,7 @@ void RedBlackTree::left_rotate(Node *n){
 	Node *n3 = n->r->l;
 	//actualizamos padre del elemento 2
 	if(n == root){//reemplaza root
-		parent[n2] == n2;
+		parent[n2] = n2;
 		root = n2;
 	}
 	else if(parent[n]->l == n){
@@ -25,7 +25,7 @@ void RedBlackTree::left_rotate(Node *n){
 	n2->l = n;
 	n->r = n3;
 	parent[n] = n2;
-	parent[n3] = n;
+	if(n3 != NULL)parent[n3] = n;
 }
 
 void RedBlackTree::right_rotate(Node *n){
@@ -48,15 +48,15 @@ void RedBlackTree::right_rotate(Node *n){
 	n2->r = n;
 	n->l = n3;
 	parent[n] = n2;
-	parent[n3] = n;
+	if(n3 != NULL)parent[n3] = n;
 }
 
 void RedBlackTree::fixInsert(Node *n){//balanceamos el arbol
-	if(n == root){//caso root
-		color[n->key] = black;
-		return;
-	}
 	while(color[parent[n]->key] == red){
+		if(n == root){//caso root
+			color[n->key] = black;
+			return;
+		}
 		Node* uncle;
 		Node* granp = parent[parent[n]];
 
@@ -76,7 +76,7 @@ void RedBlackTree::fixInsert(Node *n){//balanceamos el arbol
 		else if(parent[n]->l == n and granp->r == parent[n]){
 			Node *newn = parent[n];
 			right_rotate(parent[n]);
-			n= newn;
+			n = newn;
 		}
 		//caso triangulo izquierdo
 		else if(parent[n]->r == n and granp->l == parent[n]){
