@@ -1,3 +1,6 @@
+#ifndef BT
+#define BT
+
 #include <iostream>
 
 using namespace std;
@@ -113,6 +116,7 @@ class BinaryTree {
  
 };
 
+#endif
 
 /*
 OBSEVACIONES: 
