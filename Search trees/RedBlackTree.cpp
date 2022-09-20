@@ -6,6 +6,9 @@ using namespace std;
 #define red false
 #define black true
 
+//rotacion izquierda utilizada dentro del codigo
+//actualiza los padres y verifica si uno de los elementos 
+//es el root en cuyo caso lo actualiza
 void RedBlackTree::left_rotate(RBTNode *n){
 	RBTNode *n2 = n->r;
 	RBTNode *n3 = n->r->l;
@@ -29,6 +32,7 @@ void RedBlackTree::left_rotate(RBTNode *n){
 	if(n3 != nullptr)n3->parent = n;
 }
 
+//equivalente a left_rotate, pero en sentido opuesto
 void RedBlackTree::right_rotate(RBTNode *n){
 	RBTNode *n2 = n->l;
 	RBTNode *n3 = n->l->r;
@@ -52,12 +56,18 @@ void RedBlackTree::right_rotate(RBTNode *n){
 	if(n3 != nullptr)n3->parent = n;
 }
 
+//Metodo que asegura que el arbol mantenga las 
+//propiedades de un redBlackTree luego de una insercion
+//utilizando las rotaciones y cambios de color apropiados
+//los casos y rotaciones se hicieron en base al video:
+//https://www.youtube.com/watch?v=5IBxA-bZZH8&t=50s
 void RedBlackTree::fixInsert(RBTNode *n){//balanceamos el arbol
 	while(n->parent->color == red){
 		if(n == root){//caso root
 			n->color = black;
 			return;
 		}
+		//definimos nodos relevantes
 		RBTNode* uncle;
 		RBTNode* granp = n->parent->parent;
 
@@ -101,7 +111,8 @@ void RedBlackTree::fixInsert(RBTNode *n){//balanceamos el arbol
 	}
 
 }
-
+//se hizo override al metodo createNode dada la necesidad de mantener
+//track de los padres de cada nodo
 RBTNode* RedBlackTree::createNode(int k){//override
 	if (size == 0){//primer nodo
 		size++;
@@ -139,7 +150,7 @@ void RedBlackTree::insert(int k){
 	if(newN == nullptr)return;//ya existia nodo en set
 	fixInsert(newN);
 }
-
+//metodo de impresion que imprime tanto valores como los colores de cada nodo
 void RedBlackTree::printColors(const string& prefix, const RBTNode* node, bool isLeft)
 {//funcion de impresion
     if( node != nullptr )
@@ -156,6 +167,9 @@ void RedBlackTree::printColors(const string& prefix, const RBTNode* node, bool i
     }
 }
 
+
+//implementacion de search con la unica distincion de que funciona
+//con RBTNode en lugar de Node evitando problemas al momento de ejecucion
 bool RedBlackTree::search(int k){
 	RBTNode *t = root;
 	while(t!=NULL){

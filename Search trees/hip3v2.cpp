@@ -27,8 +27,10 @@ int main(int argc, char *argv[]){
 		set<int> values, searchVals;
 		vector<int> searchElements;
 		searchElements.reserve(size);
+		//creamos n valores distintos
 		while(values.size() != size)values.insert(rand());
 
+		//establecemos un subconjunto de valores en los que realizaran las n busquedas
 		set<int>::iterator itr;
 		if(searchSize == size)searchVals = values;
 		else{
@@ -38,6 +40,7 @@ int main(int argc, char *argv[]){
 				searchVals.insert(*itr);
 			}
 		}
+
 		for (int j = 0; j < size; ++j)
 		{
 			itr = begin(searchVals);
@@ -51,19 +54,19 @@ int main(int argc, char *argv[]){
 		}
 		//AVL
 		start = chrono::high_resolution_clock::now();
-		for (int j = 0; j < size; ++j)avl.search(searchElements[i]);
+		for (int j = 0; j < size; ++j)avl.search(searchElements[j]);
 		end = std::chrono::high_resolution_clock::now();
 		diff = end - start;
 		valsSAVL[i] = diff.count();
 		//RBT
 		start = chrono::high_resolution_clock::now();
-		for (int j = 0; j < size; ++j)rbt.search(searchElements[i]);
+		for (int j = 0; j < size; ++j)rbt.search(searchElements[j]);
 		end = std::chrono::high_resolution_clock::now();
 		diff = end - start;
 		valsSRBT[i] = diff.count();
 		//ST
 		start = chrono::high_resolution_clock::now();
-		for (int j = 0; j < size; ++j)st .search(searchElements[i]);
+		for (int j = 0; j < size; ++j)st .search(searchElements[j]);
 		end = std::chrono::high_resolution_clock::now();
 		diff = end - start;
 		valsSST[i] = diff.count();
