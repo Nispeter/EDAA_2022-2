@@ -14,7 +14,7 @@ using namespace std;
 int main(int argc, char *argv[]){
 	int searchSize = atoi(argv[1]);
 	int rep = atoi(argv[2]);
-	int size = 10000;
+	int size = 20000;
 	double valsSBT[rep], valsSAVL[rep], valsSRBT[rep], valsSST[rep];
 	chrono::duration<double> diff;
 	chrono::time_point<chrono::high_resolution_clock> start, end;
